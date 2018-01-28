@@ -22,7 +22,7 @@ Simple Service Discovery Protocol (SSDP).
 The optional argument is a text to match, such as "Roku" or "Arduino".
 
 If you specify a capture in the match text that will be returned,
-otherwise the entry that mtached will be returnewd in entirety.
+otherwise the entry that matched will be returned in entirety.
 
 NOTE: If you do not specify an argument all replies will be printed and
 the function will loop until interrupted. This is useful when searching a network.
