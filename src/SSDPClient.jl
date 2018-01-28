@@ -23,7 +23,7 @@ If you specify a capture in the match text that will be returned,
 otherwise the entry that mtached will be returnewd in entirety.
 
 NOTE: If you do not specify an argument all replies will be printed and
-the function will loop until interrupted.
+the function will loop until interrupted. This is useful when searching a network.
 """
 function ssdpquery(matchtxt="")
     MULTICAST = ip"239.255.255.250"
