@@ -1,9 +1,10 @@
 #=
-@Version: 0.1
-@Author: William Herrera
-@Copyright: 2018 William Herrera
-@Created: 27 January 2018
-@Purpose: Detect devices on local network with the SSDP protocol
+[SSDPClient.jl]
+version =  0.1
+author = "William Herrera"
+copyright = "Copyright 2018 William Herrera"
+created = "27 January 2018"
+purpose = "Detect devices on the local network using the SSDP protocol"
 =#
 
 
@@ -14,7 +15,7 @@ export ssdpquery
 
 
 """
-    ssdpquery
+    ssdpquery(matchtext="")
 
 Query local network for devices responding to query with the
 Simple Service Discovery Protocol (SSDP).
