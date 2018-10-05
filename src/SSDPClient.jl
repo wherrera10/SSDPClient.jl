@@ -10,9 +10,12 @@ purpose = "Detect devices on the local network using the SSDP protocol"
 
 module SSDPClient
 
-
 export ssdpquery
 
+# Julia > v0.7 needs this
+if !isdefined(:UDPSocket)  
+    using Sockets
+end
 
 """
     ssdpquery(matchtext="")
