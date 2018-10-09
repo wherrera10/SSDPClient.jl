@@ -13,7 +13,7 @@ module SSDPClient
 export ssdpquery
 
 # Julia > v0.7 needs this
-if !isdefined(:UDPSocket)  
+if !isdefined(Base, :UDPSocket)  
     using Sockets
 end
 
