@@ -8,7 +8,7 @@ Simple Service Discovery Protocol (SSDP) client for julia.
 
 <br />
 
-###    ssdpquery(matchtext="")
+###    ssdpquery(matchtext = ""; timeoutsecs = 10 * 60)
 
 <br />
 
