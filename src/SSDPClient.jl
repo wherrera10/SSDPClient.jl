@@ -1,21 +1,8 @@
-#=
-[SSDPClient.jl]
-version =  0.1
-author = "William Herrera"
-copyright = "Copyright 2018 William Herrera"
-created = "27 January 2018"
-purpose = "Detect devices on the local network using the SSDP protocol"
-=#
-
-
 module SSDPClient
 
 export ssdpquery
 
-# Julia > v0.7 needs this
-if !isdefined(Base, :UDPSocket)  
-    using Sockets
-end
+using Sockets
 
 """
     ssdpquery(matchtext="")
@@ -61,4 +48,3 @@ function ssdpquery(matchtxt="")
 end
 
 end # module
-
