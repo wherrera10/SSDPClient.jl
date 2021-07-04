@@ -6,5 +6,3 @@ str = ssdpquery("uuid", timeoutsecs = 15)
 
 #str = ssdpquery("Roku", timeoutsecs = 30)
 # @test contains(str, "Roku")
-
-true
