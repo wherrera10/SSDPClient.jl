@@ -30,7 +30,7 @@ function ssdpquery(matchtxt="")
             if matchtxt == ""
                 println("Received reply:\r\n$reply")
             else
-                regex = Regex(matchtxt, "s")
+                regex = Regex(matchtxt, "is")
                 if (mat = match(regex, reply)) != nothing
                     if length(mat.captures) > 0
                         return mat.captures
