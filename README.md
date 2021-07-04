@@ -1,7 +1,8 @@
 # SSDPClient.jl
+
+https://github.com/wherrera10/SSDPClient.jl/blob/master/docs/src/ssdptxt.png
+
 Simple Service Discovery Protocol (SSDP) client for julia.
-
-
 
 ## Contents
 
