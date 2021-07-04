@@ -1,6 +1,6 @@
 authors = ["William Herrera <wherrera@alahonua.com>"]
 name = "SSDPClient"
-uuid = "25fcb600-53c2-4b62-becc-06d54d090f43")
+uuid = "25fcb600-53c2-4b62-becc-06d54d090f43"
 version = "0.1.0"
 
 [deps]
