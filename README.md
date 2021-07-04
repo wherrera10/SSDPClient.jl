@@ -12,17 +12,20 @@ Simple Service Discovery Protocol (SSDP) client for julia.
 
 <br />
 
-Query the local network for devices responding to query with the
+Query local network for devices responding to query with the
 Simple Service Discovery Protocol (SSDP).
 
-The optional argument is a text to match, such as "Roku" or "Arduino".
-
+The `matchtext` argument is an optional text to match, such as "Roku" or "Arduino".
 The matching is case-insensitive.
+
+The optional `timeoutsecs` is the number of seconds to monitor the network
+before returning from the function. This defaults to 600 seconds or 10 minutes.
 If you specify a capture in the match text, that capture will be returned,
 otherwise the entry that had a match will be returned in its entirety.
 
 <em>NOTE: If you do not specify an argument all replies will be printed and
-the function will loop until interrupted. This is useful when searching a network.</em>
+the function will loop until timeout (default 10 minutes) or until Control-C
+interrupt. This is useful when searching a network.</em>
 
 <br/><br />
 
