@@ -5,7 +5,7 @@ export ssdpquery
 using Sockets
 
 """
-    ssdpquery(matchtext=""; timeoutsecs = 24 * 60 * 60)
+    ssdpquery(matchtext=""; timeoutsecs = 10 * 60)
 
 Query local network for devices responding to query with the
 Simple Service Discovery Protocol (SSDP).
