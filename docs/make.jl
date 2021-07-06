@@ -1,3 +1,3 @@
 using Documenter, SSDPClient
 
-makedocs(sitename = "SSDPCLient Module Documentation", format = Documenter.HTML(prettyurls = false))
+makedocs(sitename = "SSDPClient Module Documentation", format = Documenter.HTML(prettyurls = false))
