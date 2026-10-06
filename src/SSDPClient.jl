@@ -1,3 +1,4 @@
+""" Simple Service Discovery Protocol (SSDP) client module """
 module SSDPClient
 
 export ssdpquery
@@ -23,7 +24,7 @@ NOTE: If you do not specify an argument all replies will be printed and
 the function will loop until timeout (default 10 minutes) or until Control-C
 interrupt. This is useful when searching a network.
 """
-function ssdpquery(matchtxt=""; timeoutsecs = 24 * 60 * 60)
+function ssdpquery(matchtxt = ""; timeoutsecs = 24 * 60 * 60)
     MULTICAST = ip"239.255.255.250"
     SERVERPORT = 1900
     SEARCHHEADER = """M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: "ssdp:discover"\r\nST: ssdp:all\r\nMX: 10\r\n\r\n"""
@@ -31,20 +32,23 @@ function ssdpquery(matchtxt=""; timeoutsecs = 24 * 60 * 60)
     try
         while time() < endtime
             udpsock = UDPSocket()
-            send(udpsock, MULTICAST,SERVERPORT, SEARCHHEADER)
-            reply = join([Char(ch) for ch in recv(udpsock)], "")
-            if matchtxt == ""
-                println("Received reply:\r\n$reply")
-            else
-                regex = Regex(matchtxt, "is")
-                if (mat = match(regex, reply)) != nothing
-                    if length(mat.captures) > 0
-                        return mat.captures
+            try
+                send(udpsock, MULTICAST, SERVERPORT, SEARCHHEADER)
+                reply = join([Char(ch) for ch in recv(udpsock)], "")
+                if matchtxt == ""
+                    println("Received reply:\r\n$reply")
+                else
+                    regex = Regex(matchtxt, "is")
+                    if (mat = match(regex, reply)) !== nothing
+                        if length(mat.captures) > 0
+                            return mat.captures
+                        end
+                        return reply
                     end
-                    return reply
                 end
+            finally
+                close(udpsock)
             end
-            close(udpsock)
             sleep(3)
         end
     catch y
