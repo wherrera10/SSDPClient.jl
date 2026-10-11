@@ -1,5 +1,7 @@
 # SSDPClient.jl
 
+[![Documentation Status](https://img.shields.io/badge/docs-latest-blue.svg)](https://wherrera10.github.io/SSDPClient.jl/)
+
 Simple Service Discovery Protocol (SSDP) client for julia.
 
 <img src="https://github.com/wherrera10/SSDPClient.jl/blob/master/docs/src/ssdptxt.png">
