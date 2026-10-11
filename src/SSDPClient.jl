@@ -24,7 +24,7 @@ NOTE: If you do not specify an argument all replies will be printed and
 the function will loop until timeout (default 10 minutes) or until Control-C
 interrupt. This is useful when searching a network.
 """
-function ssdpquery(matchtxt = ""; timeoutsecs = 24 * 60 * 60)
+function ssdpquery(matchtxt = ""; timeoutsecs = 10 * 60)
     MULTICAST = ip"239.255.255.250"
     SERVERPORT = 1900
     SEARCHHEADER = """M-SEARCH * HTTP/1.1\r\nHOST: 239.255.255.250:1900\r\nMAN: "ssdp:discover"\r\nST: ssdp:all\r\nMX: 10\r\n\r\n"""
@@ -32,9 +32,14 @@ function ssdpquery(matchtxt = ""; timeoutsecs = 24 * 60 * 60)
     try
         while time() < endtime
             udpsock = UDPSocket()
+            # Force recv() to give up once the remaining time budget is used up,
+            # otherwise a reply-less recv() call can block past timeoutsecs.
+            timer = Timer(max(0.0, endtime - time())) do _
+                close(udpsock)
+            end
             try
                 send(udpsock, MULTICAST, SERVERPORT, SEARCHHEADER)
-                reply = join([Char(ch) for ch in recv(udpsock)], "")
+                reply = String(recv(udpsock))
                 if matchtxt == ""
                     println("Received reply:\r\n$reply")
                 else
@@ -46,7 +51,10 @@ function ssdpquery(matchtxt = ""; timeoutsecs = 24 * 60 * 60)
                         return reply
                     end
                 end
+            catch err
+                err isa InterruptException && rethrow() # timer or socket error
             finally
+                close(timer)
                 close(udpsock)
             end
             sleep(3)
