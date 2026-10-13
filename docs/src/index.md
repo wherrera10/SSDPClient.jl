@@ -6,9 +6,6 @@ Simple Service Discovery Protocol (SSDP) client for julia.
 
 ## Contents
 
-<br />
-
-
 ###        ssdpquery(matchtext=""; timeoutsecs = 10 * 60)
 
     Query local network for devices responding to query with the
@@ -27,16 +24,12 @@ Simple Service Discovery Protocol (SSDP) client for julia.
     the function will loop until timeout (default 10 minutes) or until Control-C
     interrupt. This is useful when searching a network.
 
-<br/><br />
 
 ## Installation
 
-
-<br />
 
 You may install the package from Github in the usual way, or to install the current master copy:
     
     using Pkg
     Pkg.add("http://github.com/wherrera10/SSDPClient.jl")
     
-<br />
